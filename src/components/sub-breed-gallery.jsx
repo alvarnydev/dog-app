@@ -17,9 +17,10 @@ export default function SubBreedGallery({ subBreeds, selectedBreed, favoritedIma
   const [selectedSubBreeds, setSelectedSubBreeds] = useState(subBreeds.length > 0 ? [subBreeds[0]] : []);
   const breedChosen = !!selectedBreed && selectedBreed !== "Alle Hunderassen";
 
-  // Reset selectedSubBreeds when selectedBreed changes
+  // Reset states when breed or subBreeds change
   useEffect(() => {
     setSelectedSubBreeds(subBreeds.length > 0 ? [subBreeds[0]] : []);
+    setCurrentImageIndex(0);
   }, [selectedBreed, subBreeds]);
 
   const memoizedBreedImages = useMemo(() => breedImages, [breedImages]);
