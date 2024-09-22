@@ -1,29 +1,39 @@
 import { useState } from "react";
 import "./App.css";
-import DogCarousel from "./components/dog-carousel";
-import DropdownMenu from "./components/dropdown-menu";
+import BreedSelector from "./components/breed-selector";
+import FavoritesGallery from "./components/favorites-gallery";
+import SubBreedGallery from "./components/sub-breed-gallery";
 import useDogApi from "./hooks/use-dog-api";
+import useLocalStorage from "./hooks/use-local-storage";
 
 function App() {
   const { data: dogBreeds, status, error, isLoading } = useDogApi("https://dog.ceo/api/breeds/list/all");
   const [selectedBreed, setSelectedBreed] = useState("");
-
-  if (error) {
-    return <p>Something went wrong: {error.message}</p>;
-  }
-
-  if (isLoading) {
-    return <p>Waiting on API response...</p>;
-  }
-
-  if (!isLoading && status !== "success") {
-    return <p>Something went wrong: {status}</p>;
-  }
+  const [favoritedImages, setFavoritedImages] = useLocalStorage("favorite-images", "");
+  const subBreeds = dogBreeds[selectedBreed] || [];
 
   return (
     <main>
-      <DropdownMenu dogBreeds={dogBreeds} selectedBreed={selectedBreed} setSelectedBreed={setSelectedBreed} />
-      {selectedBreed && <DogCarousel dogBreeds={dogBreeds} selectedBreed={selectedBreed} />}
+      <div>
+        <h1 className="site-title">Testaufgabe</h1>
+      </div>
+      <BreedSelector
+        dogBreeds={dogBreeds}
+        status={status}
+        error={error}
+        isLoading={isLoading}
+        selectedBreed={selectedBreed}
+        setSelectedBreed={setSelectedBreed}
+      />
+      <SubBreedGallery
+        subBreeds={subBreeds}
+        selectedBreed={selectedBreed}
+        favoritedImages={favoritedImages}
+        setFavoritedImages={setFavoritedImages}
+      />
+      {favoritedImages.length > 0 && (
+        <FavoritesGallery favoritedImages={favoritedImages} setFavoritedImages={setFavoritedImages} />
+      )}
     </main>
   );
 }

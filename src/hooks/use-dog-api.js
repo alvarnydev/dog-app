@@ -5,9 +5,6 @@ const useDogApi = (url) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log("fetching url...", url);
-  console.log("data", data);
-
   useEffect(() => {
     let ignore = false;
 

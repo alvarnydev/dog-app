@@ -1,0 +1,112 @@
+.sub-breed-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  color: #004177;
+}
+
+.carousel-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+
+.sub-breed-options {
+  width: 100%;
+  height: 64px;
+
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.sub-breed-option {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 20px 0;
+}
+
+.sub-breed-option input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #004177;
+  border-radius: 2px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.sub-breed-option input[type="checkbox"]::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #004177;
+  clip-path: polygon(20% 50%, 10% 65%, 50% 90%, 90% 20%, 75% 10%, 45% 70%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.sub-breed-option input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+.sub-breed-option input[type="checkbox"]:checked + label {
+  font-weight: 600;
+}
+
+.image-carousel {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.favorite-image {
+  background: transparent;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  cursor: pointer;
+}
+
+.image-container {
+  width: 600px;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dog-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.fade-in {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.image-controls {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.image-controls button {
+  flex: 1;
+}
+
+.center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
